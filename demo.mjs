@@ -49,7 +49,7 @@ liveContract.onEvent("NftMint", ({ tokenAddress, serialNumbers }) => {
 });
 
 liveContract.onEvent("NftTransfer", ({ tokenAddress, from, to, serialNumbers }) => {
-    console.log("NFTs transfered event", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers), from, to);
+    console.log("NFTs transferred event", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers), from, to);
 });
 
 // Call the Solidity mint function

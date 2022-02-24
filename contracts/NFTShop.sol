@@ -4,7 +4,7 @@ pragma solidity ^0.8.9;
 import "./hip-206/IHederaTokenService.sol";
 import "./hip-206/HederaResponseCodes.sol";
 
-// @title NFTShop - a simple minting and transfering contract
+// @title NFTShop - a simple minting and transferring contract
 // @author Buidler Labs
 // @dev The functions implemented make use of Hedera Token Service precompiled contract
 contract NFTShop is HederaResponseCodes {
@@ -49,7 +49,7 @@ contract NFTShop is HederaResponseCodes {
     // @dev event used if a mint was successful
     event NftMint(address indexed tokenAddress, int64[] serialNumbers);
 
-    // @dev event used after tokens have been transfered
+    // @dev event used after tokens have been transferred
     event NftTransfer(
         address indexed tokenAddress,
         address indexed from,
@@ -65,8 +65,8 @@ contract NFTShop is HederaResponseCodes {
         _;
     }
 
-    // @dev Main minting and transfering function
-    // @param to The address to which the tokens are transfered after being minted
+    // @dev Main minting and transferring function
+    // @param to The address to which the tokens are transferred after being minted
     // @param amount The number of tokens to be minted
     // @return The serial numbers of the tokens which have been minted
     function mint(address to, uint256 amount)
