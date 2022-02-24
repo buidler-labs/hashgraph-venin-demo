@@ -1,10 +1,10 @@
-import { Hbar } from "@hashgraph/sdk";
-import { Account, ApiSession, Contract, Token } from '@buidlerlabs/hedera-strato-js';
+import { Hbar, TokenSupplyType } from "@hashgraph/sdk";
+import { Account, ApiSession, Contract, Token, TokenTypes } from '@buidlerlabs/hedera-strato-js';
 
 const convertBigNumberArrayToNumberArray = (array) => array.map(item => item.toNumber());
 
 // Define the constants used in the demo
-const nftPriceInHbar = 10;
+const nftPriceInHbar = new Hbar(10);
 const amountToMint = 5;
 const metadata = "Qmbp4hqKpwNDYjqQxsAAm38wgueSY8U2BSJumL74wyX2Dy";
 const defaultNonFungibleTokenFeatures = {
@@ -17,13 +17,13 @@ const defaultNonFungibleTokenFeatures = {
     name: "hbarRocks",
     supplyType: TokenSupplyType.Finite,
     symbol: "HROKs",
-    type: TokenType.NonFungibleUnique
+    type: TokenTypes.NonFungibleUnique
 };
 
 // Create the CreatableEntities and the UploadableEntities
 const account = new Account({ maxAutomaticTokenAssociations: 1 });
 const token = new Token(defaultNonFungibleTokenFeatures);
-const contract = await Contract.newFrom({ path: './NFTShop.sol' });
+const contract = await Contract.newFrom({ path: 'NFTShop.sol' });
 
 // Initialize the session
 const { session } = await ApiSession.default();
@@ -36,7 +36,7 @@ const liveContract = await session.upload(
     { _contract: { gas: 200_000 } },
     liveToken,
     session,
-    new Hbar(nftPriceInHbar).toTinybars().toNumber(),
+    nftPriceInHbar._valueInTinybar,
     metadata
 );
 
@@ -55,7 +55,7 @@ liveContract.onEvent("NftTransfer", ({ tokenAddress, from, to, serialNumbers }) 
 // Call the Solidity mint function
 const serialNumbers = await liveContract.mint(
     {
-        amount: new Hbar(nftPriceInHbar * amountToMint),
+        amount: new Hbar(nftPriceInHbar.toBigNumber().toNumber() * amountToMint).toBigNumber().toNumber(),
         gas: 1_500_000
     },
     aliceLiveAccount,
