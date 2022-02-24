@@ -45,11 +45,11 @@ liveToken.assignSupplyControlTo(liveContract);
 
 // Register Solidity triggered events
 liveContract.onEvent("NftMint", ({ tokenAddress, serialNumbers }) => {
-    session.log.info("NFTs minted", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers));
+    console.log("NFTs minted event", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers));
 });
 
 liveContract.onEvent("NftTransfer", ({ tokenAddress, from, to, serialNumbers }) => {
-    session.log.info("NFTs transfered", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers), from, to);
+    console.log("NFTs transfered event", tokenAddress, convertBigNumberArrayToNumberArray(serialNumbers), from, to);
 });
 
 // Call the Solidity mint function
@@ -62,11 +62,11 @@ const serialNumbers = await liveContract.mint(
     amountToMint
 );
 
-session.log.info("Serial numbers minted by the smart contract", convertBigNumberArrayToNumberArray(serialNumbers));
+console.log("Serial numbers minted by the smart contract", convertBigNumberArrayToNumberArray(serialNumbers));
 
 // Query info for the involved account and contract
 const aliceInfo = await aliceLiveAccount.getLiveEntityInfo();
 const contractInfo = await liveContract.getLiveEntityInfo();
 
-session.log.info(`Number of NFTs owned by Alice: ${aliceInfo.ownedNfts.toNumber()}`);
-session.log.info(`HBar balance of contract: ${contractInfo.balance.toBigNumber().toNumber()}`);
+console.log(`Number of NFTs owned by Alice: ${aliceInfo.ownedNfts.toNumber()}`);
+console.log(`HBar balance of contract: ${contractInfo.balance.toBigNumber().toNumber()}`);
