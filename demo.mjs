@@ -1,5 +1,5 @@
 import { Hbar, TokenSupplyType } from "@hashgraph/sdk";
-import { Account, ApiSession, Contract, Token, TokenTypes } from '@buidlerlabs/hedera-strato-js';
+import { Account, ApiSession, Contract, Token, TokenTypes } from '@buidlerlabs/hashgraph-venin-js';
 
 const convertBigNumberArrayToNumberArray = (array) => array.map(item => item.toNumber());
 
@@ -56,7 +56,8 @@ liveContract.onEvent("NftTransfer", ({ tokenAddress, from, to, serialNumbers }) 
 const serialNumbers = await liveContract.mint(
     {
         amount: new Hbar(nftPriceInHbar.toBigNumber().toNumber() * amountToMint).toBigNumber().toNumber(),
-        gas: 1_500_000
+        gas: 1_500_000,
+        onlyReceipt: false
     },
     aliceLiveAccount,
     amountToMint
