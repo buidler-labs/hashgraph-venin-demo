@@ -1,7 +1,7 @@
-# Hedera Strato NFT Contract interactions showcase
+# Hashgraph Venin NFT Contract interactions showcase
 
 ```
-Created a new stated strato-client of type 'Hedera'
+Created a new stated venin-client of type 'Hedera'
 Creating a new Hedera Account
 A new 'ECDSA' key has been created: 3030020100300706052b8104000a04220420bce8fec6f301d2b2cea46944da41fee7154266295a847db3152774ea23efe6e5 . Copy it since this is only time you'll see it.
 Successfully created Account id 0.0.1001
@@ -23,7 +23,7 @@ HBar balance of contract: 50
 
 Before diving in, just make sure you have a [node CLI](https://nodejs.org/en/download/) version `>=16` installed then do the normal
 ```
-git clone https://github.com/buidler-labs/hedera-strato-demo.git
+git clone https://github.com/buidler-labs/hashgraph-venin-demo.git
 npm install
 ```
 to fetch the repo and its dependencies.
